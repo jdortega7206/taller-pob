@@ -1,1 +1,93 @@
+class Usuario:
+    def __init__(self, nombre: str = "", rol: str = "operario"):
+        self._nombre = nombre
+        self._rol = rol
 
+
+    def get_nombre(self) -> str:
+        return self._nombre
+
+    def get_rol(self) -> str:
+        return self._rol
+
+
+    def set_nombre(self, nombre: str) -> None:
+        self._nombre = str(nombre).strip()
+
+    def set_rol(self, rol: str) -> None:
+        self._rol = str(rol).strip()
+
+
+    def imprimir_datos(self) -> str:
+        return f"Usuario: {self._nombre} ({self._rol})".strip()
+
+
+    def operar(self, maquina: "Maquina", carro: "Carro") -> str:
+
+        accion_maquina = maquina.instalar_parabrisas()
+        accion_carro = carro.recibir_parabrisas()
+        return f"{self._nombre} ordena -> {accion_maquina} y {accion_carro}"
+
+
+class Maquina:
+    def __init__(self, tipo: str = "robot brazo", estado: str = "lista"):
+        self._tipo = tipo
+        self._estado = estado
+
+
+    def get_tipo(self) -> str:
+        return self._tipo
+
+    def get_estado(self) -> str:
+        return self._estado
+
+
+    def set_tipo(self, tipo: str) -> None:
+        self._tipo = str(tipo).strip()
+
+    def set_estado(self, estado: str) -> None:
+        self._estado = str(estado).strip()
+
+
+    def imprimir_datos(self) -> str:
+        return f"Maquina: {self._tipo} | Estado: {self._estado}".strip()
+
+    def instalar_parabrisas(self) -> str:
+        self._estado = "instalando parabrisas"
+        return f"{self._tipo} está {self._estado}"
+
+
+class Carro:
+    def __init__(self, marca: str = "", modelo: str = ""):
+        self._marca = marca
+        self._modelo = modelo
+        self._tiene_parabrisas = False
+
+
+    def get_marca(self) -> str:
+        return self._marca
+
+    def get_modelo(self) -> str:
+        return self._modelo
+
+    def get_tiene_parabrisas(self) -> bool:
+        return self._tiene_parabrisas
+
+
+    def set_marca(self, marca: str) -> None:
+        self._marca = str(marca).strip()
+
+    def set_modelo(self, modelo: str) -> None:
+        self._modelo = str(modelo).strip()
+
+    def set_tiene_parabrisas(self, valor: bool) -> None:
+        self._tiene_parabrisas = bool(valor)
+
+
+    def imprimir_datos(self) -> str:
+        estado_pb = "con parabrisas" if self._tiene_parabrisas else "sin parabrisas"
+        return f"Carro: {self._marca} {self._modelo} ({estado_pb})".strip()
+
+    def recibir_parabrisas(self) -> str:
+        self._tiene_parabrisas = True
+        return "el carro recibió el parabrisas"
