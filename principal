@@ -1,1 +1,40 @@
+from modelo_fabrica import Usuario, Maquina, Carro
+
+def main():
+
+    obj_usuario = Usuario()
+    obj_maquina = Maquina()
+    obj_carro = Carro()
+
+
+    obj_usuario.set_nombre("Nelson")
+    obj_usuario.set_rol("operario de línea")
+
+    obj_maquina.set_tipo("robot de instalación de vidrio")
+    obj_maquina.set_estado("lista") 
+
+    obj_carro.set_marca("Hyundai")
+    obj_carro.set_modelo("Kona")
+
+
+    print(obj_usuario.imprimir_datos())
+    print(obj_maquina.imprimir_datos())
+    print(obj_carro.imprimir_datos())
+
+
+    resultado_operacion = obj_usuario.operar(obj_maquina, obj_carro)
+    print(resultado_operacion)
+
+
+    print(obj_maquina.imprimir_datos())
+    print(obj_carro.imprimir_datos())
+
+
+    objetos = [obj_usuario, obj_maquina, obj_carro]
+    for o in objetos:
+
+        print("->", o.imprimir_datos())
+
+if __name__ == "__main__":
+    main()
 
